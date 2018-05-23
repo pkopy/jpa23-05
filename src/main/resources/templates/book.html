@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 1em;
+            padding: 1em;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+
+
+    </style>
+    <meta charset="UTF-8">
+    <!--<link rel="stylesheet" type="text/css" media="screen" href="../static/style.css" />-->
+    <title>Rejestracja</title>
+</head>
+<body>
+<div style="text-align: center">
+    <!--<h1 th:if="${isLoginCorrect != null}" th:text="${isLoginCorrect? #messages.msg('LoginTemplate.loggedIn'):#messages.msg('LoginTemplate.badData')}" th:style="'color: '+${isLoginCorrect ? 'green': 'red'}"></h1>-->
+    <form method="post" action="/book" th:object = "${bookForm}">
+        Tytuł: <input type="text" th:field="*{title}" >
+        <!--<span th:if="${#fields.hasErrors('login')}" th:errors ="*{login}"></span><br>-->
+        Autor: <input type="text" th:field="*{author}">
+        Strony: <input type="text" th:field="*{pages}">
+        <!--<span th:if="${#fields.hasErrors('password')}" th:errors ="*{password}"></span><br>-->
+        <input type="submit" value="Wyślij">
+    </form>
+    <p th:if="${bookAuthor != null} " th:block ="${bookAuthor}"></p>
+
+    <table >
+        <tr>
+            <th>Author</th>
+            <th>Title</th>
+            <th>Pages</th>
+
+        </tr>
+        <th:block th:each="book : ${bookAuthor}">
+            <tr>
+                <td th:text="${book.getAuthor()}">...</td>
+                <td th:text="${book.getTitle()}">...</td>
+                <td th:text="${book.getPages()}">...</td>
+            </tr>
+            <tr>
+                <!--<td colspan="2" th:text="${user.address}">...</td>-->
+            </tr>
+        </th:block>
+
+</div>
+
+</body>
+</html>
