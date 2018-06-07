@@ -101,6 +101,7 @@ public class MainController {
 
     @GetMapping("/add/{id}")
 
+
     public String add(@PathVariable("id") int id){
 
         basketService.addProductToBasket(barcodeRepository.findById(id).orElseThrow(IllegalStateException::new));
